@@ -8,8 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
+    var ballArray = ["ball1", "ball2", "ball3", "ball4", "ball5"]
+    
+    var ballImage: Int = 0
+    
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +27,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func askButtonPressed(_ sender: Any) {
+        updateBalls()
+    }
+    
+    func updateBalls() {
+        ballImage = Int(arc4random_uniform(5))
+        
+        imageView.image = UIImage(named: ballArray[ballImage])
+    }
+    
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        updateBalls()
+    }
+    
 }
 
